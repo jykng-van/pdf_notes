@@ -1,6 +1,0 @@
-[submodule "animation_queue"]
-	path = animation_queue
-	url = https://github.com/jykng-van/animation_queue.git
-[submodule "image_editor"]
-	path = image_editor
-	url = https://github.com/jykng-van/image_editor.git
