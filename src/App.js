@@ -52,7 +52,7 @@ function App() {
     console.log('drop pdf', file);
     const reader = new FileReader();
     reader.addEventListener("load", set_pdf_data, false);
-    reader.readAsDataURL(file);
+    reader.readAsArrayBuffer(file);
   }
   function set_pdf(e){
     console.log('set_pdf', e.target.files);
@@ -63,7 +63,7 @@ function App() {
 
         reader.addEventListener("load", set_pdf_data, false);
         if (file) {
-            reader.readAsDataURL(file);
+            reader.readAsArrayBuffer(file);
         }
     }
   }
