@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# PDF Previewer and Notes <br>
+This was originally in a project that used "speaker notes" for a PDF, it didn't change the PDF, it just had associated data with a page in the PDF with an optional note that would appear if clicked. <br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It uses Mozilla's *PDF.js* library and a rich text editor. <br>
 
-## Available Scripts
+Since this is not a separate editor and display page like the project it was originally for, there's instead an "edit" and "preview" mode. It's designed to only edit one PDF and there's an addition of a preview page gallery. <br>
 
-In the project directory, you can run:
+## The PDF Viewer <br>
+There's some limited zoom levels for the PDF preview and it can be moved around, this exists in both modes. <br>
 
-### `npm start`
+Pages can be changed with the "previous" and "next" buttons below, or with the "current page" input. <br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The old project wasn't touchscreen friendly, this version is. <br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Edit Mode <br>
+A PDF is selected to edit, the old project had logic for checking against an old PDF which was removed, since this app is only concerned about the first PDF to edit. <br>
 
-### `npm test`
+The notes are added in the text box at the bottom, the old project used *SCeditor* which I didn't find that compatible with the app so I used *Quill.js* instead. <br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Notes are only added/changed on clicking **Save Notes** with a timed indicator to appear. Pages with saved notes appear in the preview gallery below, where clicking on one activates "preview" mode.<br>
 
-### `npm run build`
+After a PDF has been selected, the drop area no longer appears and there's an Edit button in it's place, which will set "edit" mode and reopen the previewer when clicked. <br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Preview Mode <br>
+In the old project notes appeared optionally, for this demo app they appear as a dialog message if there's notes for that page. <br>
