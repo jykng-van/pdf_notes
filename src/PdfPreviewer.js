@@ -1,4 +1,4 @@
-import * as pdfjs from 'pdfjs-dist';
+import * as pdfjs from 'pdfjs-dist/webpack';
 
 export default class PdfPreviewer {
     previewer; //the canvas the preview displays on
@@ -27,11 +27,6 @@ export default class PdfPreviewer {
     thumb_max = 90; //max dimension of thumbnail
 
     constructor(previewer) {
-        pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-            'pdfjs-dist/build/pdf.worker.min.mjs',
-            import.meta.url
-          ).toString(); //setup the worker
-
         this.previewer = previewer;
         this.frame = this.previewer.parentNode;
         this.context = this.previewer.getContext("2d");
@@ -51,6 +46,7 @@ export default class PdfPreviewer {
         window.addEventListener('resize', this.load_pdf_page.bind(this));
     }
     async load_new_pdf(new_file) {
+        console.log('load_new_pdf', new_file);
         this.file = new_file;
         this.page_num = 1;
         this.scale = 1.0;
@@ -62,27 +58,12 @@ export default class PdfPreviewer {
         }
     }
 
-    async load_pdf_info(file) {
-        try {
-            let pdf = await pdfjs.getDocument(`/Api/RetrievePDF/${file}`).promise;
-            return pdf._pdfInfo;
-        } catch (ex) {
-            console.log(ex.message);
-        }
-    }
     async load_pdf() {
         try {
             this.pdf = await this.loadingTask.promise;
             console.log(this.pdf);
             this.total_pages = await this.pdf._pdfInfo.numPages;
             console.log('load_pdf total_pages', this.total_pages);
-
-            if (this.full_speaker_notes) {
-                this.json_notes = this.json_notes.filter(p => p.page <= this.total_pages);
-                console.log(this.json_notes);
-                this.full_speaker_notes.value = JSON.stringify(this.json_notes);
-            }
-
 
             await this.load_pdf_page();
         } catch (e) {
